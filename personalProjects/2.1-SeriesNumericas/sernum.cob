@@ -46,12 +46,6 @@
                      DISPLAY 'NUMERO NO ACEPTADO, INGRESA OTRO: '
                   END-IF
                END-IF
-
-           DISPLAY "-------------DEBUG INFO-----------------"                                                            
-               DISPLAY "ACUMULADO: " ACUMULADO
-               DISPLAY "CONTADOR: " CONTADOR-CICLOS
-           DISPLAY "-------------DEBUG INFO-----------------"                                                            
-
            END-PERFORM.
 
            COMPUTE PROMEDIO = ACUMULADO / CONTADOR-CICLOS.
