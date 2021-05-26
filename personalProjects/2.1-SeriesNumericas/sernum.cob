@@ -8,11 +8,11 @@
        DATA DIVISION.                                              
        FILE SECTION.                                               
        WORKING-STORAGE SECTION.                                    
-       77  SWITCH-DETENER             PIC X.                       
+       77  SELECCION-USUARIO          PIC X.                       
        77  CONTADOR-CICLOS            PIC 999 VALUE 0.            
-       77  NUMERO-INPUT               PIC 999.                        
+       77  NUMERO-INPUT               PIC 999 VALUE 1.                        
        77  ACUMULADO                  PIC 9(6).              
-       77  PROMEDIO                   PIC (4)V99.            
+       77  PROMEDIO                   PIC 9(4)V99.            
       *                                                           
        PROCEDURE DIVISION.                                                
       *                                                                   
@@ -34,8 +34,28 @@
            DISPLAY "DESPUES DE INGRESAR EL NUMERO, PRESIONA ENTER.".                                             
            DISPLAY "CUANDO YA NO QUIERAS INGRESAR MAS NUMEROS, INGRESA".                                         
            DISPLAY "0 Y PULSA ENTER.".   
-                                         
-           PERFORM UNTIL NUMERO-INPUT = 0
+
+            PERFORM UNTIL NUMERO-INPUT = 0
                ACCEPT NUMERO-INPUT
-               
-                                                                                         
+
+               IF NUMERO-INPUT > 0
+                  IF NUMERO-INPUT < 1000
+                     COMPUTE ACUMULADO = ACUMULADO + NUMERO-INPUT
+                     COMPUTE CONTADOR-CICLOS = CONTADOR-CICLOS + 1
+                  ELSE
+                     DISPLAY 'NUMERO NO ACEPTADO, INGRESA OTRO: '
+                  END-IF
+               END-IF
+
+           DISPLAY "-------------DEBUG INFO-----------------"                                                            
+               DISPLAY "ACUMULADO: " ACUMULADO
+               DISPLAY "CONTADOR: " CONTADOR-CICLOS
+           DISPLAY "-------------DEBUG INFO-----------------"                                                            
+
+           END-PERFORM.
+
+           COMPUTE PROMEDIO = ACUMULADO / CONTADOR-CICLOS.
+
+           DISPLAY "------------------------------".                                                             
+           DISPLAY "LA SUMA TOTAL DE LOS NUMEROS ES: " ACUMULADO.
+           DISPLAY "EL PROMEDIO DE LOS NUMEROS ES: " PROMEDIO.
